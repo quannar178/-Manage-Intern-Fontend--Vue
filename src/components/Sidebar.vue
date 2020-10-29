@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-secondary sidebar"></div>
+  <div class="bg-dark sidebar"></div>
 </template>
 
 <script>

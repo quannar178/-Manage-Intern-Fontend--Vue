@@ -2,7 +2,7 @@
   <div class="bg-primary navbar">
     <div class="row h-100 w-100 my-auto d-flex" style="justify-content: space-between">
       <div class="my-auto ml-3">
-        <i class="fas fa-bars breadcumb" style="font-size: 23px; color: white"></i>
+        <i class="fas fa-bars breadcumb" style="font-size: 25px; color: white"></i>
       </div>
       <div class="my-auto">
           <div class="dropdown container-dropdown">
@@ -14,7 +14,7 @@
           aria-haspopup="true"
           aria-expanded="false"
         >
-          User
+          {{role}}
         </button>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="#">Upload CV</a>
@@ -29,8 +29,14 @@
 </template>
 
 <script>
+import store from '../store'
 export default {
-    name: `Navbar`
+    name: `Navbar`,
+    data() {
+      return {
+        role: store.getters.role || "User"
+      }
+    },
 };
 </script>
 

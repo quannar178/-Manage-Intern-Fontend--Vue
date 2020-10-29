@@ -79,4 +79,9 @@
 export default {};
 </script>
 
-<style></style>
+<style scoped>
+.hidden {
+  display: none;
+  visibility: hidden;
+}
+</style>

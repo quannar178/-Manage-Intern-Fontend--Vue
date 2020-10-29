@@ -21,7 +21,9 @@
                 type="email"
                 class="form-control"
                 id="exampleInputEmail1"
+                required
                 aria-describedby="emailHelp"
+                v-model="userInfo.email"
               />
             </div>
             <div class="form-group">
@@ -30,18 +32,15 @@
                 type="password"
                 class="form-control"
                 id="exampleInputPassword1"
+                v-model="userInfo.password"
               />
             </div>
-            <p
-              class="text-danger text-center"
-              :class="{ hidden: !error }"
-            >
+            <p class="text-danger text-center" v-if="error">
               Wrong email or password?
             </p>
             <button
               type="submit"
               class="btn btn-primary d-block p-2 w-75 mx-auto"
-              style="font-weight: 500;"
               :class="{ disabled: loading }"
               @click.prevent="handleLogin"
             >
@@ -72,29 +71,32 @@ export default {
     return {
       loading: false,
       error: false,
+      userInfo: {
+        email: "",
+        password: "",
+      },
     };
   },
   methods: {
     handleLogin() {
       // event.preventDefault()
-      // this.loading = true;
-      const userInfo = {
-        email: "quannar1781@gmail.com",
-        password: "123456",
-      };
+      this.loading = true;
 
-      console.log(userInfo);
+      console.log(this.userInfo);
 
       this.$store
-        .dispatch("user/login", userInfo)
+        .dispatch("user/login", this.userInfo)
         .then(() => {
           console.log();
           this.loading = false;
+          console.log("done request");
           this.$router.push("/");
         })
         .catch((error) => {
           this.loading = false;
           this.error = true;
+          console.log("done request");
+
           console.log(error);
         });
       // axios
@@ -105,7 +107,7 @@ export default {
       //   .catch(function(error) {
       //     console.log(error);
       //   });
-    }
+    },
   },
 };
 </script>

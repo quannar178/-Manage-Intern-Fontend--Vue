@@ -1,6 +1,5 @@
 const { getToken } = require("./auth");
 const axios = require("axios");
-
 const service = axios.create({
   baseURL: "http://localhost:8000/",
   timeout: 5000,
@@ -13,6 +12,7 @@ service.interceptors.request.use(
       config.headers["authorization"] = getToken();
       console.log("in auth", getToken());
     }
+    console.log("service", config);
     return config;
   },
   function(error) {

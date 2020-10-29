@@ -5,14 +5,15 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/login',
-    name: 'Login',
-    component: () => import('../views/Login'),
-  },
-  {
     path: '/',
     name: 'Defaultlayout',
-    component: DefaultLayout
+    component: DefaultLayout,
+    redirect: '/dashboard',
+    children: [{
+      path: 'dashboard',
+      name: 'Dashboard',
+      component: () => import('../views/UploadCV'),
+    }]
   }
 ]
 
