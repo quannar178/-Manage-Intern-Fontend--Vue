@@ -1,19 +1,13 @@
-# front-end
+# Mamage Intern - Vue
 
 ## Project setup
-```
-npm install
+
+```js
+yarn  install
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Compiles and hot-reloads for development
 
-### Compiles and minifies for production
+```js
+yarn dev
 ```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
