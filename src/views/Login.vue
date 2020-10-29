@@ -8,7 +8,6 @@
           to <br />
           manage website
         </h1>
-        <!-- </div> -->
       </div>
       <div class="col my-auto">
         <div
@@ -33,10 +32,18 @@
                 id="exampleInputPassword1"
               />
             </div>
+            <p
+              class="text-danger text-center"
+              :class="{ hidden: !error }"
+            >
+              Wrong email or password?
+            </p>
             <button
               type="submit"
               class="btn btn-primary d-block p-2 w-75 mx-auto"
               style="font-weight: 500;"
+              :class="{ disabled: loading }"
+              @click.prevent="handleLogin"
             >
               Log In
             </button>
@@ -58,12 +65,59 @@
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+export default {
+  name: "Login",
+  data() {
+    return {
+      loading: false,
+      error: false,
+    };
+  },
+  methods: {
+    handleLogin() {
+      // event.preventDefault()
+      // this.loading = true;
+      const userInfo = {
+        email: "quannar1781@gmail.com",
+        password: "123456",
+      };
+
+      console.log(userInfo);
+
+      this.$store
+        .dispatch("user/login", userInfo)
+        .then(() => {
+          console.log();
+          this.loading = false;
+          this.$router.push("/");
+        })
+        .catch((error) => {
+          this.loading = false;
+          this.error = true;
+          console.log(error);
+        });
+      // axios
+      //   .post("http://localhost:8000/api/auth/login", userInfo)
+      //   .then(function(response) {
+      //     console.log(response);
+      //   })
+      //   .catch(function(error) {
+      //     console.log(error);
+      //   });
+    }
+  },
+};
 </script>
 
 <style scoped>
 .link-reset {
   text-decoration: underline !important;
   cursor: pointer;
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
 }
 </style>

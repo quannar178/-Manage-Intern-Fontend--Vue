@@ -5,17 +5,14 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/login',
     name: 'Login',
-    component: DefaultLayout,
-    redirect: '/calendar',
-    children: [
-      {
-        path: 'calendar',
-        name: 'Calendar',
-        component: () => import('../views/DatePicker')
-      }
-    ]
+    component: () => import('../views/Login'),
+  },
+  {
+    path: '/',
+    name: 'Defaultlayout',
+    component: DefaultLayout
   }
 ]
 
