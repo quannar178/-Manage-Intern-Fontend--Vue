@@ -15,6 +15,7 @@
                 class="form-control"
                 id="email"
                 placeholder="abc@gmail.com"
+                v-model="formData.email"
               />
             </div>
             <div class="form-group">
@@ -23,14 +24,22 @@
                 type="text"
                 class="form-control"
                 id="CMND"
+                minlength="9"
                 placeholder="123456789"
+                v-model="formData.CMND"
               />
             </div>
+            <h3 class="text-success" v-if="success">success!</h3>
+            <p class="text-danger text-center" :class="{ hidden: !error }">
+              Wrong email or CMND?
+            </p>
 
             <button
               type="submit"
               class="btn btn-primary d-block p-2 w-75 mx-auto text-wrap"
               style="font-weight: 500;"
+              :class="{ disable: loading }"
+              @click.prevent="handleForget"
             >
               Continue
             </button>
@@ -50,10 +59,43 @@
 </template>
 
 <script>
-export default {};
+import { fogetPassword } from "../api/user";
+import {setToken} from '../utils/auth'
+export default {
+  name: "FogettenPassword",
+  data() {
+    return {
+      formData: {
+        email: "",
+        CMND: "",
+      },
+      error: false,
+      success: false,
+      loading: false
+    };
+  },
+  methods: {
+    handleForget() {
+      this.loading = true;
+      console.log({ email: this.formData.email, CMND: this.formData.CMND });
+      fogetPassword(this.formData)
+        .then((res) => {
+          setToken(res.headers['authorization']);
+          this.loading = false;
+          this.success = true;
+          this.error = false;
+          this.$router.push({path: '/resetPassword'})
+          console.log(res.headers);
+        })
+        .catch((err) => {
+          this.loading = false;
+          this.success = false;
+          this.error = true;
+          console.log(err);
+        });
+    },
+  },
+};
 </script>
 
-<style scoped>
-
-
-</style>
+<style scoped></style>

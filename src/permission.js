@@ -2,7 +2,7 @@ import router from "./router";
 import store from './store'
 const { getToken } = require("./utils/auth");
 
-const whiteList = ["/login"];
+const whiteList = ["/login", '/'];
 
 router.beforeEach(async (to, from, next) => {
   console.log("in guuard ");

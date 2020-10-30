@@ -1,18 +1,83 @@
 <template>
-  <div class="bg-dark sidebar"></div>
+  <div class="bg-dark sidebar">
+    <h2 class="text-center">{{ role }}</h2>
+    <!-- profile -->
+    <a
+      class="btn btn-primary w-100"
+      type="button"
+      data-toggle="collapse"
+      data-target="#profile"
+    >
+      <router-link class="text-white" to="">Profile</router-link>
+    </a>
+
+    <!-- project -->
+    <a
+      class="btn btn-primary w-100"
+      data-toggle="collapse"
+      href="#Project"
+    >
+      <router-link class="text-white" to="">Project</router-link>
+    </a>
+
+    <div class="collapse" id="Project">
+      <div class="card card-body">
+        <a class="btn secondary w-100">
+          <router-link to="">Detail</router-link>
+        </a>
+        <a class="btn secondary w-100">
+          <router-link to="">Detail</router-link>
+        </a>
+        <a class="btn secondary w-100">
+          <router-link to="">Detail</router-link>
+        </a>
+        <a class="btn secondary w-100">
+          <router-link to="">Detail</router-link>
+        </a>
+      </div>
+    </div>
+    <!-- Schedule -->
+        <a
+      class="btn btn-primary w-100"
+      data-toggle="collapse"
+      href="#Schedule"
+    >
+      <router-link class="text-white" to="">Schedule</router-link>
+    </a>
+
+    <div class="collapse" id="Schedule">
+      <div class="card card-body">
+        <a class="btn secondary w-100">
+          <router-link to="">Draft</router-link>
+        </a>
+        <a class="btn secondary w-100">
+          <router-link to="">Publish</router-link>
+        </a>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
+import store from "../store";
 export default {
-    name: `Sidebar`
-}
+  name: `Sidebar`,
+  data() {
+    return {
+      role: "",
+    };
+  },
+  created() {
+    this.role = store.getters.role || "User";
+  },
+};
 </script>
 
 <style>
 .sidebar {
-    width: 20%;
-    height: 100vh;
-    position: absolute;
-    top: 0;
+  width: 20%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
 }
 </style>

@@ -10,17 +10,30 @@
           <form class="m-3">
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="text" class="form-control" id="password" />
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                v-model="pasword"
+              />
             </div>
             <div class="form-group">
               <label for="confirmpassword">Confirm password</label>
-              <input type="text" class="form-control" id="confirmpassword" />
+              <input
+                type="password"
+                class="form-control"
+                id="confirmpassword"
+                v-model="confirmpassword"
+              />
             </div>
-
+            <p class="text-danger text-center" :class="{ hidden: !error }">
+              Try again?
+            </p>
             <button
               type="submit"
               class="btn btn-primary d-block p-2 w-75 mx-auto text-wrap"
               style="font-weight: 500;"
+              @click.prevent="handleReset"
             >
               Change password
             </button>
@@ -40,7 +53,34 @@
 </template>
 
 <script>
-export default {};
+import { resetPassword } from "../api/user";
+import { removeToken } from "../utils/auth";
+export default {
+  name: "ResetPassword",
+  data() {
+    return {
+      pasword: "",
+      confirmpassword: "",
+      error: false,
+    };
+  },
+  methods: {
+    handleReset() {
+      if (this.pasword.trim() === this.confirmpassword.trim()) {
+        resetPassword({ password: this.pasword.trim() })
+          .then((result) => {
+            removeToken();
+            this.$router.push({ path: "/login" });
+          })
+          .catch((err) => {
+            this.error = true;
+          });
+      } else {
+        this.error = true;
+      }
+    },
+  },
+};
 </script>
 
 <style scoped></style>

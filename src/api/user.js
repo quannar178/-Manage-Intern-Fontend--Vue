@@ -48,10 +48,28 @@ const uploadCV = (formData) => {
     })
 }
 
+const fogetPassword = (data) => {
+    return request({
+        url: '/api/auth/forgetpassword',
+        method: 'post',
+        data
+    })
+}
+
+const resetPassword = (data) => {
+    return request({
+        url: '/api/auth/resetpassword',
+        method: 'post',
+        data
+    })
+}
+
 module.exports = {
     login,
     getInfo,
     getProfile,
     updateProfile,
-    uploadCV
+    uploadCV,
+    fogetPassword,
+    resetPassword
 }
