@@ -1,6 +1,6 @@
 <template>
   <div class="bg-dark sidebar">
-    <h2 class="text-center">{{ role }}</h2>
+    <h2 class="text-center text-white">{{ role }}</h2>
     <!-- profile -->
     <a
       class="btn btn-primary w-100"
@@ -12,11 +12,7 @@
     </a>
 
     <!-- project -->
-    <a
-      class="btn btn-primary w-100"
-      data-toggle="collapse"
-      href="#Project"
-    >
+    <a class="btn btn-primary w-100" data-toggle="collapse" href="#Project">
       <router-link class="text-white" to="">Project</router-link>
     </a>
 
@@ -37,11 +33,7 @@
       </div>
     </div>
     <!-- Schedule -->
-        <a
-      class="btn btn-primary w-100"
-      data-toggle="collapse"
-      href="#Schedule"
-    >
+    <a class="btn btn-primary w-100" data-toggle="collapse" href="#Schedule">
       <router-link class="text-white" to="">Schedule</router-link>
     </a>
 
@@ -55,7 +47,23 @@
         </a>
       </div>
     </div>
+  <!-- Employee -->
+  <a class="btn btn-primary w-100" data-toggle="collapse" href="#Employee">
+      <router-link class="text-white" to="">Employee</router-link>
+    </a>
+
+    <div class="collapse" id="Employee">
+      <div class="card card-body">
+        <a class="btn secondary w-100">
+          <router-link to="">Salary</router-link>
+        </a>
+        <a class="btn secondary w-100">
+          <router-link to="">CRUB</router-link>
+        </a>
+      </div>
+    </div>
   </div>
+  
 </template>
 
 <script>

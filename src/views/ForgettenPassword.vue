@@ -18,7 +18,7 @@
                 v-model="formData.email"
               />
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="CMND">Số CMND</label>
               <input
                 type="text"
@@ -28,7 +28,7 @@
                 placeholder="123456789"
                 v-model="formData.CMND"
               />
-            </div>
+            </div> -->
             <h3 class="text-success" v-if="success">success!</h3>
             <p class="text-danger text-center" :class="{ hidden: !error }">
               Wrong email or CMND?
@@ -48,6 +48,7 @@
             <button
               type="submit"
               class="btn btn-success d-block p-2 w-50 mx-auto"
+              @click.prevent="redirectLogin"
             >
               Log In
             </button>
@@ -60,7 +61,7 @@
 
 <script>
 import { fogetPassword } from "../api/user";
-import {setToken} from '../utils/auth'
+import { setToken } from "../utils/auth";
 export default {
   name: "FogettenPassword",
   data() {
@@ -71,21 +72,18 @@ export default {
       },
       error: false,
       success: false,
-      loading: false
+      loading: false,
     };
   },
   methods: {
     handleForget() {
       this.loading = true;
-      console.log({ email: this.formData.email, CMND: this.formData.CMND });
+      console.log({ email: this.formData.email });
       fogetPassword(this.formData)
         .then((res) => {
-          setToken(res.headers['authorization']);
           this.loading = false;
           this.success = true;
           this.error = false;
-          this.$router.push({path: '/resetPassword'})
-          console.log(res.headers);
         })
         .catch((err) => {
           this.loading = false;
@@ -93,6 +91,9 @@ export default {
           this.error = true;
           console.log(err);
         });
+    },
+    redirectLogin() {
+      this.$router.push({ path: "/login" });
     },
   },
 };

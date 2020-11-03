@@ -17,10 +17,12 @@
           {{role}}
         </button>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Upload CV</a>
-          <a class="dropdown-item" href="#">Profile</a>
+          <a class="dropdown-item"><router-link to="/uploadcv">Upload CV</router-link></a>
+          <a class="dropdown-item"><router-link to="/profile">Profile</router-link></a>
           <hr>
-          <a class="dropdown-item" href="#">Logout</a>
+          <a class="dropdown-item"><router-link to="/resetpassword">Reset password</router-link></a>
+          <a class="dropdown-item"><router-link to="/logout">Logout</router-link></a>
+          
         </div>
       </div>
       </div>

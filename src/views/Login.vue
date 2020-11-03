@@ -47,12 +47,13 @@
               Log In
             </button>
             <a class="text-primary text-center d-block mt-3 link-reset"
-              >Forgotten password?</a
+              ><router-link to="/forgettenpassword">Forgotten password?</router-link></a
             >
             <hr />
             <button
               type="submit"
               class="btn btn-success d-block p-2 w-50 mx-auto"
+              @click.prevent="redirectRegister"
             >
               Create New Account
             </button>
@@ -108,6 +109,9 @@ export default {
       //     console.log(error);
       //   });
     },
+    redirectRegister(){
+      this.$router.push({path: '/register'})
+    }
   },
 };
 </script>

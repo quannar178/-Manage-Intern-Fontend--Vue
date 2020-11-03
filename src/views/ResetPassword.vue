@@ -43,7 +43,7 @@
               type="submit"
               class="btn btn-success d-block p-2 w-50 mx-auto"
             >
-              Log In
+              <router-link to="/login">Log In</router-link>
             </button>
           </form>
         </div>
@@ -67,9 +67,8 @@ export default {
   methods: {
     handleReset() {
       if (this.pasword.trim() === this.confirmpassword.trim()) {
-        resetPassword({ password: this.pasword.trim() })
+        resetPassword({ password: this.pasword.trim() }, this.$route.params['token'])
           .then((result) => {
-            removeToken();
             this.$router.push({ path: "/login" });
           })
           .catch((err) => {

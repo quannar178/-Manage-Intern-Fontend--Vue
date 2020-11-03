@@ -5,7 +5,7 @@ const getDefaultStore = () => {
   return {
     token: getToken(),
     role: "",
-    id: ''
+    id: "",
   };
 };
 
@@ -41,7 +41,7 @@ const actions = {
           setToken(token);
           commit("SET_TOKEN", token);
           commit("SET_ROLE", data.role);
-          commit("SET_ID", data.id)
+          commit("SET_ID", data.id);
           resolve();
         })
         .catch((err) => {
@@ -50,17 +50,19 @@ const actions = {
     });
   },
 
-  logout({commit}) {
+  logout({ commit }) {
     console.log("in module user: logout");
     return new Promise((resolve, reject) => {
-      logout().then(()=> {
-        removeToken();
-        commit('RESET_TOKEN');
-        resolve();
-      }).catch(error => {
-        reject(error)
-      })
-    })
+      logout()
+        .then(() => {
+          removeToken();
+          commit("RESET_TOKEN");
+          resolve();
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
   },
 
   getInfo({ commit }) {
@@ -74,8 +76,8 @@ const actions = {
           if (!data) {
             return reject("Verification failed, please Login again.");
           }
-
-          commit("SET_ROLE", data.role);
+          const role = data.role[0].toUpperCase() + data.role.slice(1);
+          commit("SET_ROLE", role);
 
           resolve();
         })
@@ -85,15 +87,15 @@ const actions = {
     });
   },
 
-  resetState({commit}) {
+  resetState({ commit }) {
     console.log("in module user: resetState");
 
-     return Promise((resolve) => {
+    return Promise((resolve) => {
       removeToken();
-      commit('RESET_STATE')
+      commit("RESET_STATE");
       resolve();
-     })
-  }
+    });
+  },
 };
 
 export default {

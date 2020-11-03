@@ -6,33 +6,51 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/login",
-    name: 'Login',
+    name: "Login",
     component: () => import("../views/Login"),
   },
   {
-
+    path: "/register",
+    name: "Register",
+    component: () => import("../views/Register"),
+  },
+  {
     path: "/",
     name: "Default layout",
     component: DefaultLayout,
-    redirect: "/Profile",
+    redirect: "/scheduledraft",
     children: [
       {
         path: "/Profile",
         name: "Profile",
         component: () => import("../views/Profile"),
       },
+      {
+        path: "/uploadCV",
+        name: "UploadCV",
+        component: () => import("../views/UploadCV"),
+      },
+      {
+        path: "/scheduledraft",
+        name: "ScheduleDraft",
+        component: () => import("../views/ScheduleDraft"),
+      },
     ],
   },
   {
     path: "/forgettenpassword",
-    name: 'ForgettenPassword',
+    name: "ForgettenPassword",
     component: () => import("../views/ForgettenPassword"),
   },
   {
-    path: '/resetPassword',
-    name: 'ResetPassword',
-    component: () => import('../views/ResetPassword')
-  }
+    path: "/resetPassword/:token",
+    name: "ResetPassword",
+    component: () => import("../views/ResetPassword"),
+  },
+  {
+    path: "/logout",
+    name: "Logout",
+  },
 ];
 
 const router = new VueRouter({
