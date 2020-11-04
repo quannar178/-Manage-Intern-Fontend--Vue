@@ -17,11 +17,14 @@ router.beforeEach(async (to, from, next) => {
       removeToken();
       next("/login");
     } else {
-      const hasUserRole = store.getters;
+      const hasUserRole = store.getters.role
+      console.log("@@@",hasUserRole);
       if (hasUserRole) {
         next();
       } else {
         try {
+          console.log("get user info");
+
           await store.dispatch("user/getInfo");
           next();
         } catch (error) {

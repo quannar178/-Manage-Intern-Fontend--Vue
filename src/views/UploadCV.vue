@@ -27,7 +27,7 @@
         Upload
       </button>
       <hr />
-      <button type="submit" class="btn btn-success d-block p-2 w-50 mx-auto">
+      <button type="submit" class="btn btn-success d-block p-2 w-50 mx-auto" @click="handRedirect">
         View profile
       </button>
     </form>
@@ -105,6 +105,9 @@ export default {
       //       console.log(err);
       //     });
     },
+    handRedirect(){
+      this.$router.push('/profile');
+    }
   },
 };
 </script>

@@ -18,7 +18,7 @@ const routes = [
     path: "/",
     name: "Default layout",
     component: DefaultLayout,
-    redirect: "/scheduledraft",
+    redirect: "/Profile",
     children: [
       {
         path: "/Profile",
@@ -29,13 +29,43 @@ const routes = [
         path: "/uploadCV",
         name: "UploadCV",
         component: () => import("../views/UploadCV"),
+      }
+    ],
+  },
+  {
+    path: '/project',
+    component: DefaultLayout,
+    redirect: '/project/summary',
+    children: [
+      {
+        path: 'add',
+        name: 'CreateProject',
+        component: () => import('../views/project/Create')
       },
       {
-        path: "/scheduledraft",
-        name: "ScheduleDraft",
-        component: () => import("../views/ScheduleDraft"),
+        path: 'summary',
+        name: 'Summary',
+        component: () => import('../views/project/Summary')
       },
-    ],
+      {
+        path: 'update/:id',
+        name: 'update',
+        component: () => import('../views/project/Update')
+      }
+    ]
+  },
+  {
+    path: '/schedule',
+    name: 'Schedule',
+    component: DefaultLayout,
+    redirect: '/schedule/draft',
+    children: [
+      {
+        path: 'draft',
+        name: 'Draft Schedule',
+        component: () => import('../views/Schedule/ScheduleDraft')
+      }
+    ]
   },
   {
     path: "/forgettenpassword",

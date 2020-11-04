@@ -1,7 +1,7 @@
 const { login, logout, getInfo } = require("../../api/user");
 const { getToken, setToken, removeToken } = require("../../utils/auth");
 
-const getDefaultStore = () => {
+const getDefaultState = () => {
   return {
     token: getToken(),
     role: "",
@@ -9,7 +9,7 @@ const getDefaultStore = () => {
   };
 };
 
-const store = getDefaultStore();
+const state = getDefaultState();
 
 const mutations = {
   SET_ID: (state, id) => {
@@ -39,6 +39,7 @@ const actions = {
           const { data } = res;
           const token = res.headers["authorization"];
           setToken(token);
+
           commit("SET_TOKEN", token);
           commit("SET_ROLE", data.role);
           commit("SET_ID", data.id);
@@ -74,10 +75,12 @@ const actions = {
           const { data } = response;
           console.log("in get info ", data);
           if (!data) {
+            this.$router.redirect("/login");
             return reject("Verification failed, please Login again.");
           }
           const role = data.role[0].toUpperCase() + data.role.slice(1);
           commit("SET_ROLE", role);
+          commit("SET_ID", data.id);
 
           resolve();
         })
@@ -100,7 +103,7 @@ const actions = {
 
 export default {
   namespaced: true,
-  store,
+  state,
   mutations,
   actions,
 };

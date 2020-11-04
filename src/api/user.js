@@ -71,13 +71,48 @@ const register = (data) => {
   });
 };
 
+const registerschedule = (data) => {
+  return request({
+    url: "/api/user/registerschedule",
+    method: "post",
+    data,
+  });
+};
+const publicschedule = (data) => {
+  return request({
+    url: "/api/user/publicschedule",
+    method: "post",
+    data,
+  });
+};
+
+const getSchedule = (id) => {
+  return request({
+    url: "/api/user/schedule/" + id,
+    method: "get",
+  });
+};
+
+const downloadCV = (data) => {
+  return request({
+    url: "/api/user/downloadcv",
+    method: "post",
+    responseType: "blob",
+    data,
+  });
+};
+
 module.exports = {
   login,
   getInfo,
   getProfile,
   updateProfile,
   uploadCV,
+  downloadCV,
   fogetPassword,
   resetPassword,
   register,
+  registerschedule,
+  publicschedule,
+  getSchedule,
 };

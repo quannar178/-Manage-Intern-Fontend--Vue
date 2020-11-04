@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid" style="height: 100vh">
+  <div class="container-fluid" style="height: 100%">
     <div class="row h-100">
       <div class="col my-auto">
         <div
@@ -91,7 +91,7 @@
 </template>
 
 <script>
-import {register} from "../api/user";
+import { register } from "../api/user";
 export default {
   name: "Register",
   data() {
@@ -115,7 +115,7 @@ export default {
         })
           .then((res) => {
             console.log(res);
-            this.$router.push('/login')
+            this.$router.push("/login");
           })
           .catch((err) => {
             this.error = true;

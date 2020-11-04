@@ -8,47 +8,44 @@
       data-toggle="collapse"
       data-target="#profile"
     >
-      <router-link class="text-white" to="">Profile</router-link>
+      <router-link class="text-white" to="/profile">Profile</router-link>
     </a>
 
     <!-- project -->
     <a class="btn btn-primary w-100" data-toggle="collapse" href="#Project">
-      <router-link class="text-white" to="">Project</router-link>
+      <router-link class="text-white" to="/project">Project</router-link>
     </a>
 
     <div class="collapse" id="Project">
       <div class="card card-body">
         <a class="btn secondary w-100">
-          <router-link to="">Detail</router-link>
+          <router-link to="/project/summary">Sumary</router-link>
         </a>
         <a class="btn secondary w-100">
-          <router-link to="">Detail</router-link>
+          <router-link to="/project/add">Add</router-link>
         </a>
         <a class="btn secondary w-100">
-          <router-link to="">Detail</router-link>
-        </a>
-        <a class="btn secondary w-100">
-          <router-link to="">Detail</router-link>
+          <router-link to="/project/update/0">Update</router-link>
         </a>
       </div>
     </div>
     <!-- Schedule -->
     <a class="btn btn-primary w-100" data-toggle="collapse" href="#Schedule">
-      <router-link class="text-white" to="">Schedule</router-link>
+      <router-link class="text-white" to="/schedule">Schedule</router-link>
     </a>
 
     <div class="collapse" id="Schedule">
       <div class="card card-body">
         <a class="btn secondary w-100">
-          <router-link to="">Draft</router-link>
+          <router-link to="/schedule/draft">Draft</router-link>
         </a>
         <a class="btn secondary w-100">
           <router-link to="">Publish</router-link>
         </a>
       </div>
     </div>
-  <!-- Employee -->
-  <a class="btn btn-primary w-100" data-toggle="collapse" href="#Employee">
+    <!-- Employee -->
+    <a class="btn btn-primary w-100" data-toggle="collapse" href="#Employee">
       <router-link class="text-white" to="">Employee</router-link>
     </a>
 
@@ -63,7 +60,6 @@
       </div>
     </div>
   </div>
-  
 </template>
 
 <script>

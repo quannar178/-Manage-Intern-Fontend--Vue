@@ -41,8 +41,6 @@
     <div class="row">
       <div class="col-4 font-weight-bold border-right">Gender</div>
       <div class="col-8">
-        {{ userInfo.gender }}
-
         <div class="form-check">
           <input
             class="form-check-input"
@@ -104,7 +102,12 @@
     <div class="row">
       <div class="col-4 font-weight-bold border-right">CV</div>
       <div class="col-8">
-        <a class="span" v-if="userInfo.hasCV">Download CV</a>
+        <a
+          class="span link-reset text-info"
+          v-if="userInfo.hasCV"
+          @click="handleDownload"
+          >Download CV</a
+        >
         <p class="text-danger" v-else>You need to upload CV</p>
       </div>
     </div>
@@ -133,7 +136,9 @@
 </template>
 
 <script>
-const { getProfile, updateProfile } = require("../api/user");
+const FileDownload = require("js-file-download");
+const axios = require("axios");
+const { getProfile, updateProfile, downloadCV } = require("../api/user");
 export default {
   name: "Profile",
   data() {
@@ -156,7 +161,7 @@ export default {
       success: false,
     };
   },
-  beforeCreate() {
+  created() {
     getProfile()
       .then((res) => {
         const { data } = res;
@@ -199,6 +204,34 @@ export default {
           console.log(err);
         });
     },
+    handleDownload() {
+      // console.log("download cv");
+      const id = this.$store.getters.id;
+      // downloadCV({ id: id })
+      //   .then((res) => {
+      //     const content = res.headers["content-disposition"];
+      //     const index = content.indexOf("filename=");
+      //     const filename = content.slice(index + 9);
+      //     console.log(filename);
+      //     FileDownload(res.data, filename);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
+      downloadCV({ id: id }).then((response) => {
+        const content = response.headers["content-disposition"];
+        const index = content.indexOf("filename=");
+        const filename = content.slice(index + 9);
+
+        var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+        var fileLink = document.createElement("a");
+        fileLink.href = fileURL;
+        fileLink.setAttribute("download", filename);
+        document.body.appendChild(fileLink);
+
+        fileLink.click();
+      });
+    },
   },
 };
 </script>
@@ -211,5 +244,9 @@ export default {
 }
 .row {
   margin: 20px;
+}
+.link-reset {
+  text-decoration: underline !important;
+  cursor: pointer;
 }
 </style>
