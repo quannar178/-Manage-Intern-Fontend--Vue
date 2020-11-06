@@ -29,48 +29,69 @@ const routes = [
         path: "/uploadCV",
         name: "UploadCV",
         component: () => import("../views/UploadCV"),
-      }
+      },
     ],
   },
   {
-    path: '/project',
+    path: "/project",
     component: DefaultLayout,
-    redirect: '/project/detail',
+    redirect: "/project/detail",
     children: [
       {
-        path: 'add',
-        name: 'CreateProject',
-        component: () => import('../views/project/Create')
+        path: "add",
+        name: "CreateProject",
+        component: () => import("../views/project/Create"),
       },
       {
-        path: 'summary',
-        name: 'Summary',
-        component: () => import('../views/project/Summary')
+        path: "summary",
+        name: "Summary",
+        component: () => import("../views/project/Summary"),
       },
       {
-        path: 'update/:id',
-        name: 'update',
-        component: () => import('../views/project/Update')
+        path: "update/:id",
+        name: "update",
+        component: () => import("../views/project/Update"),
       },
       {
-        path: 'detail',
-        name: 'Detail',
-        component: () => import('../views/project/Detail')
-      }
-    ]
+        path: "detail",
+        name: "Detail",
+        component: () => import("../views/project/Detail"),
+      },
+    ],
   },
   {
-    path: '/schedule',
-    name: 'Schedule',
+    path: "/schedule",
+    name: "Schedule",
     component: DefaultLayout,
-    redirect: '/schedule/draft',
+    redirect: "/schedule/draft",
     children: [
       {
-        path: 'draft',
-        name: 'Draft Schedule',
-        component: () => import('../views/Schedule/ScheduleDraft')
-      }
-    ]
+        path: "draft",
+        name: "Draft Schedule",
+        component: () => import("../views/Schedule/ScheduleDraft"),
+      },
+      {
+        path: "public",
+        name: "Public Schedule",
+        component: () => import("../views/Schedule/SchedulePublic"),
+      },
+    ],
+  },
+  {
+    path: "/employee",
+    name: "Employee",
+    component: DefaultLayout,
+    redirect: "/employee/salary",
+    children: [
+      {
+        path: "crud",
+        component: () => import("../views/Employee/CRUD"),
+      },
+      {
+        path: "salary",
+        component: () => import("../views/Employee/Salary"),
+      },
+    ],
   },
   {
     path: "/forgettenpassword",

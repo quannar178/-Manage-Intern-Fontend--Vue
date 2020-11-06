@@ -92,6 +92,26 @@ const getSchedule = (id) => {
     method: "get",
   });
 };
+const getAll = () => {
+  return request({
+    url: "/api/user/",
+    method: "get",
+  });
+};
+const updateUser = (data) => {
+  return request({
+    url: "/api/user/",
+    method: "put",
+    data,
+  });
+};
+const deleteUser = (data) => {
+  return request({
+    url: "/api/user/",
+    method: "delete",
+    data,
+  });
+};
 
 const downloadCV = (data) => {
   return request({
@@ -115,4 +135,7 @@ module.exports = {
   registerschedule,
   publicschedule,
   getSchedule,
+  getAll,
+  updateUser,
+  deleteUser,
 };

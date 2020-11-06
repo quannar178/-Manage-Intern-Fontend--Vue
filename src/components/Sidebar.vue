@@ -43,22 +43,22 @@
           <router-link to="/schedule/draft">Draft</router-link>
         </a>
         <a class="btn secondary w-100">
-          <router-link to="">Publish</router-link>
+          <router-link to="/schedule/public">Publish</router-link>
         </a>
       </div>
     </div>
     <!-- Employee -->
     <a class="btn btn-primary w-100" data-toggle="collapse" href="#Employee">
-      <router-link class="text-white" to="">Employee</router-link>
+      <router-link class="text-white" to="/employee">Employee</router-link>
     </a>
 
     <div class="collapse" id="Employee">
       <div class="card card-body">
         <a class="btn secondary w-100">
-          <router-link to="">Salary</router-link>
+          <router-link to="/employee/salary">Salary</router-link>
         </a>
         <a class="btn secondary w-100">
-          <router-link to="">CRUB</router-link>
+          <router-link to="/employee/crud">CRUD</router-link>
         </a>
       </div>
     </div>

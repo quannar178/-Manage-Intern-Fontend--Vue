@@ -67,7 +67,7 @@ export default {
   },
   created() {
     this.id = this.$route.params["id"];
-    if (this.id !== 0) {
+    if (this.id != 0) {
       getDetailProject(this.id)
         .then((res) => {
           console.log(res.data);
