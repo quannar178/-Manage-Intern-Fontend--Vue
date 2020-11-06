@@ -27,6 +27,9 @@
         <a class="btn secondary w-100">
           <router-link to="/project/update/0">Update</router-link>
         </a>
+        <a class="btn secondary w-100">
+          <router-link to="/project/Detail">Detail</router-link>
+        </a>
       </div>
     </div>
     <!-- Schedule -->

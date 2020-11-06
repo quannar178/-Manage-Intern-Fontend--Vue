@@ -35,7 +35,7 @@ const routes = [
   {
     path: '/project',
     component: DefaultLayout,
-    redirect: '/project/summary',
+    redirect: '/project/detail',
     children: [
       {
         path: 'add',
@@ -51,6 +51,11 @@ const routes = [
         path: 'update/:id',
         name: 'update',
         component: () => import('../views/project/Update')
+      },
+      {
+        path: 'detail',
+        name: 'Detail',
+        component: () => import('../views/project/Detail')
       }
     ]
   },
