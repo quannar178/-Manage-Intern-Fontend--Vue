@@ -28,7 +28,7 @@ router.beforeEach(async (to, from, next) => {
           await store.dispatch("user/getInfo");
           next();
         } catch (error) {
-          store.dispatch("user/resetState");
+          await store.dispatch("user/resetState");
           next(`/login?redirect=${to.path}`);
         }
       }

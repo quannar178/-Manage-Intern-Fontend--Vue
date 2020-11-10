@@ -19,6 +19,7 @@
           v-for="user in userInfo"
           :key="user.hash"
           @click="handleCRUD(user.id)"
+          style="cursor: pointer;"
         >
           <th scope="row">{{ user.id }}</th>
           <td>{{ user.firstname }}</td>

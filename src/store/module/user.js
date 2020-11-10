@@ -3,7 +3,7 @@ const { getToken, setToken, removeToken } = require("../../utils/auth");
 
 const getDefaultState = () => {
   return {
-    token: getToken(),
+    token: getToken() || "",
     role: "",
     id: "",
   };
@@ -93,7 +93,7 @@ const actions = {
   resetState({ commit }) {
     console.log("in module user: resetState");
 
-    return Promise((resolve) => {
+    return new Promise((resolve) => {
       removeToken();
       commit("RESET_STATE");
       resolve();

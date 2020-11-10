@@ -122,6 +122,21 @@ const downloadCV = (data) => {
   });
 };
 
+const getSalary = () => {
+  return request({
+    url: "/api/user/salary",
+    method: "get",
+  });
+};
+
+const updateSalary = (data) => {
+  return request({
+    url: '/api/user/salary',
+    method: 'post',
+    data
+  })
+}
+
 module.exports = {
   login,
   getInfo,
@@ -138,4 +153,6 @@ module.exports = {
   getAll,
   updateUser,
   deleteUser,
+  getSalary,
+  updateSalary
 };

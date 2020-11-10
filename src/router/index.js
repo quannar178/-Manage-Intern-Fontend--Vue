@@ -91,6 +91,10 @@ const routes = [
         path: "salary",
         component: () => import("../views/Employee/Salary"),
       },
+      {
+        path: "monthly-salary",
+        component: () => import("../views/Employee/SalaryMonthly"),
+      },
     ],
   },
   {

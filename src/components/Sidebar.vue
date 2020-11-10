@@ -55,7 +55,10 @@
     <div class="collapse" id="Employee">
       <div class="card card-body">
         <a class="btn secondary w-100">
-          <router-link to="/employee/salary">Salary</router-link>
+          <router-link to="/employee/monthly-salary">Monthly Salary</router-link>
+        </a>
+        <a class="btn secondary w-100">
+          <router-link to="/employee/salary">Overview Salary</router-link>
         </a>
         <a class="btn secondary w-100">
           <router-link to="/employee/crud">CRUD</router-link>
