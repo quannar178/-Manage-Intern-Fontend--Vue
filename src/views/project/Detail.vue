@@ -5,15 +5,15 @@
       <h2 class="text-center mt-3">Detail Project</h2>
       <div class="row mt-4">
         <div class="col-4 text-center ">Name</div>
-        <div class="col-8 text-center"> {{name}} </div>
+        <div class="col-8 text-center">{{ name }}</div>
       </div>
       <div class="row mt-4">
         <div class="col-4 text-center ">Description</div>
-        <div class="col-8 text-center"> {{description}} </div>
+        <div class="col-8 text-center">{{ description }}</div>
       </div>
       <div class="row mt-4">
-        <div class="col-4 text-center ">Deadline</div>
-        <div class="col-8 text-center"> {{deadline}} </div>
+        <div class="col-4 text-center">Deadline</div>
+        <div class="col-8 text-center">{{ deadline }}</div>
       </div>
     </div>
   </div>
@@ -33,6 +33,7 @@ export default {
   },
   created() {
     getProfile().then((res) => {
+      console.log(res);
       const projectID = res.data.project;
       if (projectID === "No infomation") {
         this.id = -1;
@@ -46,6 +47,7 @@ export default {
             this.deadline = res.data.deadline.slice(0, 10);
           })
           .catch((err) => {
+            this.id = -1;
             console.log(err);
           });
       }

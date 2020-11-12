@@ -4,10 +4,10 @@
       <div class="row border-bottom" v-for="day in range" :key="day">
         <div class="col-4 d-flex w-100 h-100  my-auto">Day {{ day + 1 }}</div>
         <div class="col-8">
-          <div v-if="data[day] == 'O'">Off</div>
+          <div v-if="data[day] == 'A'">Afternoon</div>
           <div v-else-if="data[day] == 'F'">Fullday</div>
           <div v-else-if="data[day] == 'M'">Morning</div>
-          <div v-else>Afternoon</div>
+          <div v-else>Off</div>
 
         </div>
       </div>

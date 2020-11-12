@@ -29,7 +29,7 @@
                 v-model="formData.CMND"
               />
             </div> -->
-            <h3 class="text-success" v-if="success">success!</h3>
+            <h6 class="text-success" v-if="success">Check your email to reset password!</h6>
             <p class="text-danger text-center" :class="{ hidden: !error }">
               Wrong email or CMND?
             </p>
@@ -68,7 +68,6 @@ export default {
     return {
       formData: {
         email: "",
-        CMND: "",
       },
       error: false,
       success: false,
