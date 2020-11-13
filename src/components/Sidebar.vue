@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-dark sidebar">
+  <div class="bg-dark sidebar" :class="{ toggleNav: !showSidebar }">
     <h2 class="text-center text-white">
       {{ role[0].toUpperCase() + role.slice(1) }}
     </h2>
@@ -40,7 +40,12 @@
     </div>
 
     <!-- Team -->
-    <a class="btn btn-primary w-100" data-toggle="collapse" href="#Team"   v-if="role == 'leader'" >
+    <a
+      class="btn btn-primary w-100"
+      data-toggle="collapse"
+      href="#Team"
+      v-if="role == 'leader'"
+    >
       <router-link class="text-white font-weight-bold" to="/team"
         >Team</router-link
       >
@@ -106,19 +111,26 @@ export default {
   data() {
     return {
       role: "",
+      showSidebar: true,
     };
   },
   created() {
     this.role = store.getters.role.toLowerCase() || "User";
+    this.showSidebar = store.getters.showSidebar;
   },
 };
 </script>
 
-<style>
+<style scoped>
 .sidebar {
   width: 20%;
   height: 100vh;
   position: absolute;
   top: 0;
+  transition: width 0.4s ease;
+}
+
+.toggleNav {
+  width: 10%;
 }
 </style>

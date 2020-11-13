@@ -1,15 +1,17 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import user from './module/user'
-import getters from './getters'
+import Vue from "vue";
+import Vuex from "vuex";
+import user from "./module/user";
+import setting from "./module/setting";
+import getters from "./getters";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 const router = new Vuex.Store({
   modules: {
-    user
+    user,
+    setting,
   },
-  getters
-})
+  getters,
+});
 
-export default router
+export default router;
