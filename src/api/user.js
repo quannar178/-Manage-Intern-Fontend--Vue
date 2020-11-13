@@ -137,6 +137,13 @@ const updateSalary = (data) => {
   })
 }
 
+const getTeam = () => {
+  return request({
+    url: "/api/user/team",
+    method: "get"
+  })
+}
+
 module.exports = {
   login,
   getInfo,
@@ -154,5 +161,6 @@ module.exports = {
   updateUser,
   deleteUser,
   getSalary,
-  updateSalary
+  updateSalary,
+  getTeam
 };

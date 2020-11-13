@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid" style="height: 100%">
-    <div class="row h-100">
+    <div class="row h-100 mt-3">
       <div class="col my-auto">
         <div
           class="card w-50 mx-auto"

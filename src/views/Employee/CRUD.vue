@@ -12,21 +12,26 @@
           <th scope="col">Role</th>
           <th scope="col">Team</th>
           <th scope="col">Project</th>
+          <th scope="col">CV</th>
         </tr>
       </thead>
       <tbody>
         <tr
           v-for="user in userInfo"
           :key="user.hash"
-          @click="handleCRUD(user.id)"
+          
           style="cursor: pointer;"
         >
-          <th scope="row">{{ user.id }}</th>
-          <td>{{ user.firstname }}</td>
-          <td>{{ user.lastname }}</td>
-          <td>{{ user.role }}</td>
-          <td>{{ user.leader }}</td>
-          <td>{{ user.project }}</td>
+          <th scope="row" @click="handleCRUD(user.id)">{{ user.id }}</th>
+          <td @click="handleCRUD(user.id)">{{ user.firstname }}</td>
+          <td @click="handleCRUD(user.id)">{{ user.lastname }}</td>
+          <td @click="handleCRUD(user.id)">{{ user.role }}</td>
+          <td @click="handleCRUD(user.id)">{{ user.leader }}</td>
+          <td @click="handleCRUD(user.id)">{{ user.project }}</td>
+          <td>
+            <a class="text-primary" v-if="user.hasCV" @click="handleDownload(user.id)">Download</a>
+            <span class="text-danger" v-else>Don't have</span>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -147,7 +152,7 @@
 </template>
 
 <script>
-import { getAll, updateUser, deleteUser } from "../../api/user";
+import { getAll, updateUser, deleteUser, downloadCV } from "../../api/user";
 var hash = require("object-hash");
 export default {
   data() {
@@ -224,6 +229,26 @@ export default {
         }
       }
     },
+    handleDownload(id){
+      console.log("fdsjkfajslkfd");
+      setTimeout(() => {
+        $("#modal").modal("hide");
+      }, 1000);
+
+      downloadCV({ id: id }).then((response) => {
+        const content = response.headers["content-disposition"];
+        const index = content.indexOf("filename=");
+        const filename = content.slice(index + 9);
+
+        var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+        var fileLink = document.createElement("a");
+        fileLink.href = fileURL;
+        fileLink.setAttribute("download", filename);
+        document.body.appendChild(fileLink);
+
+        fileLink.click();
+      });
+    }
   },
 };
 </script>

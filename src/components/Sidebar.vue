@@ -1,6 +1,8 @@
 <template>
   <div class="bg-dark sidebar">
-    <h2 class="text-center text-white">{{ role[0].toUpperCase() + role.slice(1) }}</h2>
+    <h2 class="text-center text-white">
+      {{ role[0].toUpperCase() + role.slice(1) }}
+    </h2>
     <!-- profile -->
     <a
       class="btn btn-primary w-100"
@@ -8,12 +10,16 @@
       data-toggle="collapse"
       data-target="#profile"
     >
-      <router-link class="text-white font-weight-bold" to="/profile">Profile</router-link>
+      <router-link class="text-white font-weight-bold" to="/profile"
+        >Profile</router-link
+      >
     </a>
 
     <!-- project -->
     <a class="btn btn-primary w-100" data-toggle="collapse" href="#Project">
-      <router-link class="text-white font-weight-bold" to="/project">Project</router-link>
+      <router-link class="text-white font-weight-bold" to="/project"
+        >Project</router-link
+      >
     </a>
 
     <div class="collapse" id="Project">
@@ -32,9 +38,25 @@
         </a>
       </div>
     </div>
+
+    <!-- Team -->
+    <a class="btn btn-primary w-100" data-toggle="collapse" href="#Team"   v-if="role == 'leader'" >
+      <router-link class="text-white font-weight-bold" to="/team"
+        >Team</router-link
+      >
+    </a>
+    <div class="collapse" id="Team">
+      <div class="card card-body">
+        <a class="btn secondary w-100">
+          <router-link to="/team/detail">Detail</router-link>
+        </a>
+      </div>
+    </div>
     <!-- Schedule -->
     <a class="btn btn-primary w-100" data-toggle="collapse" href="#Schedule">
-      <router-link class="text-white font-weight-bold" to="/schedule">Schedule</router-link>
+      <router-link class="text-white font-weight-bold" to="/schedule"
+        >Schedule</router-link
+      >
     </a>
 
     <div class="collapse" id="Schedule">
@@ -48,14 +70,23 @@
       </div>
     </div>
     <!-- Employee -->
-    <a class="btn btn-primary w-100" data-toggle="collapse" href="#Employee" v-if="role == 'admin'">
-      <router-link class="text-white font-weight-bold" to="/employee">Employee</router-link>
+    <a
+      class="btn btn-primary w-100"
+      data-toggle="collapse"
+      href="#Employee"
+      v-if="role == 'admin'"
+    >
+      <router-link class="text-white font-weight-bold" to="/employee"
+        >Employee</router-link
+      >
     </a>
 
-    <div class="collapse" id="Employee" >
+    <div class="collapse" id="Employee">
       <div class="card card-body">
         <a class="btn secondary w-100">
-          <router-link to="/employee/monthly-salary">Monthly Salary</router-link>
+          <router-link to="/employee/monthly-salary"
+            >Monthly Salary</router-link
+          >
         </a>
         <a class="btn secondary w-100">
           <router-link to="/employee/salary">Overview Salary</router-link>

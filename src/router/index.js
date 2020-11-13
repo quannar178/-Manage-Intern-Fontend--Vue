@@ -98,6 +98,18 @@ const routes = [
     ],
   },
   {
+    path: "/team",
+    name: "Team",
+    component: DefaultLayout,
+    redirect: "/team/detail",
+    children: [
+      {
+        path: "detail",
+        component: () => import("../views/Team/Team"),
+      }
+    ],
+  },
+  {
     path: "/forgettenpassword",
     name: "ForgettenPassword",
     component: () => import("../views/ForgettenPassword"),

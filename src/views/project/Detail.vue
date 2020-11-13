@@ -13,9 +13,10 @@
       </div>
       <div class="row mt-4">
         <div class="col-4 text-center">Deadline</div>
-        <div class="col-8 text-center">{{ deadline }}</div>
+        <div class="col-8 text-center">{{ deadline.slice(0, 10) }}</div>
       </div>
     </div>
+    <h3 class="text-center text-danger mt-3">Remaining time: {{remainTime}} </h3>
   </div>
 </template>
 
@@ -29,6 +30,7 @@ export default {
       description: "",
       deadline: "",
       id: "0",
+      remainTime: '123123 '
     };
   },
   created() {
@@ -45,6 +47,7 @@ export default {
             this.name = res.data.name;
             this.description = res.data.description;
             this.deadline = res.data.deadline.slice(0, 10);
+            this.remainTime = new Date(res.data.deadline)
           })
           .catch((err) => {
             this.id = -1;
@@ -52,6 +55,7 @@ export default {
           });
       }
     });
+    
   },
 };
 </script>
@@ -60,5 +64,17 @@ export default {
 .main {
   width: 100%;
   height: 100%;
+}
+
+.col-4 {
+  border-right: 1px solid grey;
+}
+
+.text-center{
+  font-size: 20px;
+}
+
+h2{
+  font-size: 30px !important;
 }
 </style>

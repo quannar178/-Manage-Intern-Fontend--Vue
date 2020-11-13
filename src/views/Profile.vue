@@ -171,7 +171,7 @@ export default {
         this.userInfo.email = data.email;
         this.userInfo.gender = data.gender;
         this.userInfo.nation = data.nation;
-        this.userInfo.startedat = data.startedat;
+        this.userInfo.startedat = data.startedat.slice(0,10) 
         this.userInfo.role = data.role;
         this.userInfo.CMND = data.CMND;
         this.userInfo.university = data.university;

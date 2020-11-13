@@ -15,8 +15,8 @@
           <th scope="row">{{ project.id }}</th>
           <td>{{ project.name }}</td>
           <td>{{ project.description }}</td>
-          <td>{{ project.createAt }}</td>
-          <td>{{ project.deadline }}</td>
+          <td>{{ project.createAt.slice(0,10) }}</td>
+          <td>{{ project.deadline.slice(0,10) }}</td>
         </tr>
       </tbody>
     </table>

@@ -7,6 +7,9 @@ import "./permission";
 Vue.config.productionTip = false;
 
 new Vue({
+  created() {
+    document.title = "Manager";
+  },
   router,
   store,
   render: function(h) {

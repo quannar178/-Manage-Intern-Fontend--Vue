@@ -42,7 +42,7 @@
         <div class="col-2">
           <button
             type="submit"
-            class="btn btn-success d-block p-2 w-75 "
+            class="btn btn-primary d-block p-2 w-75 "
             @click.prevent="createProject"
             :class="{ disabled: loading }"
           >
@@ -52,7 +52,7 @@
         <div class="col-2">
           <button
             type="reset"
-            class="btn btn-success d-block p-2 w-75 "
+            class="btn btn-secondary d-block p-2 w-75 "
             @click.prevent="resetForm"
           >
             Reset
