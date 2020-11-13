@@ -102,12 +102,14 @@
     <div class="row">
       <div class="col-4 font-weight-bold border-right">CV</div>
       <div class="col-8">
-        <a
-          class="span link-reset text-info"
-          v-if="userInfo.hasCV"
-          @click="handleDownload"
-          >Download CV</a
-        >
+        <div v-if="userInfo.hasCV">
+          <a class="span link-reset text-info" @click="handleDownload"
+            >Download</a
+          >
+          <br/>
+          <a class="span link-reset text-info" @click="viewCV">View</a>
+        </div>
+
         <p class="text-danger" v-else>You need to upload CV</p>
       </div>
     </div>
@@ -130,6 +132,33 @@
     <div class="row justify-content-md-center">
       <div class="col-4">
         <div class="btn btn-primary w-100" @click="handleProfile">Change</div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="viewCV" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">
+              Title
+            </h5>
+            <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id="img"></div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -171,7 +200,7 @@ export default {
         this.userInfo.email = data.email;
         this.userInfo.gender = data.gender;
         this.userInfo.nation = data.nation;
-        this.userInfo.startedat = data.startedat.slice(0,10) 
+        this.userInfo.startedat = data.startedat.slice(0, 10);
         this.userInfo.role = data.role;
         this.userInfo.CMND = data.CMND;
         this.userInfo.university = data.university;
@@ -185,12 +214,15 @@ export default {
   },
   methods: {
     handleProfile() {
+      this.error = false;
+      this.success = false;
       const sendData = {
         firstname: this.userInfo.firstname,
         lastname: this.userInfo.lastname,
         CMND: this.userInfo.CMND,
         gender: this.userInfo.gender,
         university: this.userInfo.university,
+        nation: this.userInfo.nation,
       };
       console.log("handle profile", sendData);
       updateProfile(sendData)
@@ -204,21 +236,26 @@ export default {
           console.log(err);
         });
     },
-    handleDownload() {
-      // console.log("download cv");
+    viewCV() {
+      $("#viewCV").modal("show");
       const id = this.$store.getters.id;
-      // downloadCV({ id: id })
-      //   .then((res) => {
-      //     const content = res.headers["content-disposition"];
-      //     const index = content.indexOf("filename=");
-      //     const filename = content.slice(index + 9);
-      //     console.log(filename);
-      //     FileDownload(res.data, filename);
-      //   })
-      //   .catch((err) => {
-      //     console.log(err);
-      //   });
       downloadCV({ id: id }).then((response) => {
+        console.log(response);
+        var reader = new FileReader();
+        reader.readAsDataURL(response.data);
+        reader.onloadend = function() {
+          var base64data = reader.result;
+          var image = new Image(400);
+          image.src = base64data;
+          $("#img").append(image);
+          console.log(base64data);
+        };
+      });
+    },
+    handleDownload() {
+      const id = this.$store.getters.id;
+      downloadCV({ id: id }).then((response) => {
+        console.log(response);
         const content = response.headers["content-disposition"];
         const index = content.indexOf("filename=");
         const filename = content.slice(index + 9);

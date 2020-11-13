@@ -2,7 +2,7 @@
   <div class="bg-primary navbar">
     <div class="row h-100 w-100 my-auto d-flex" style="justify-content: space-between">
       <div class="my-auto ml-3">
-        <i class="fas fa-bars breadcumb" style="font-size: 25px; color: white"></i>
+        <i class="fas fa-bars breadcumb" style="font-size: 25px; color: white" @click="handleBreadcumb"></i>
       </div>
       <div class="my-auto">
           <div class="dropdown container-dropdown">
@@ -20,7 +20,7 @@
           <a class="dropdown-item"><router-link to="/uploadcv">Upload CV</router-link></a>
           <a class="dropdown-item"><router-link to="/profile">Profile</router-link></a>
           <hr>
-          <a class="dropdown-item"><router-link to="/resetpassword">Reset password</router-link></a>
+          <!-- <a class="dropdown-item"><router-link to="/resetpassword">Reset password</router-link></a> -->
           <a class="dropdown-item"><router-link to="/logout">Logout</router-link></a>
           
         </div>

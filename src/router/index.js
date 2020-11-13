@@ -123,6 +123,10 @@ const routes = [
     path: "/logout",
     name: "Logout",
   },
+  {
+    path: '*',
+    redirect: "/login"
+  }
 ];
 
 const router = new VueRouter({

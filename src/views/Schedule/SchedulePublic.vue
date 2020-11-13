@@ -1,6 +1,7 @@
 <template>
   <div class="container-fluid main w-100">
     <h2 class="text-center">Schedule: {{ month + 1 }} - {{ year }}</h2>
+    <div v-if="show">
       <div class="row border-bottom" v-for="day in range" :key="day">
         <div class="col-4 d-flex w-100 h-100  my-auto">Day {{ day + 1 }}</div>
         <div class="col-8">
@@ -10,6 +11,8 @@
           <div v-else>Off</div>
         </div>
       </div>
+    </div>
+    <p v-else>You hadn't register!</p>
   </div>
 </template>
 
@@ -25,6 +28,7 @@ export default {
       data: [],
       success: false,
       error: false,
+      show: false,
     };
   },
   created() {
@@ -37,7 +41,12 @@ export default {
     getSchedule(this.$store.getters.id)
       .then((res) => {
         this.data = res.data.scheduleInfo;
-        console.log(res.data.scheduleInfo);
+        if (this.data === "No info") {
+          this.show = false;
+        }else{
+          this.show = true;
+        }
+        console.log("###",res.data.scheduleInfo);
       })
       .catch((err) => console.log(err));
   },

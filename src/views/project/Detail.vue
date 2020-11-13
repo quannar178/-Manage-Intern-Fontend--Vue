@@ -16,7 +16,7 @@
         <div class="col-8 text-center">{{ deadline.slice(0, 10) }}</div>
       </div>
     </div>
-    <h3 class="text-center text-danger mt-3">Remaining time: {{remainTime}} </h3>
+    <!-- <h3 class="text-center text-danger mt-3">Remaining time: {{remainTime}} </h3> -->
   </div>
 </template>
 
